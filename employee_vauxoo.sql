@@ -51,26 +51,33 @@ CREATE TABLE employee_hobby (
   description varchar(150)
 );
 
+--	Task : Crea una tabla llamada "employee_hobby" con los campos "id", "name", "description".
 --	Create table employees_hobbies
 CREATE TABLE employees_hobbies (
+	--	Un empleado puede tener muchos pasatiempos. Y muchos pasatiempos pueden pertenecer a muchos empleados.
   employee_id integer REFERENCES employee (id),
   department_id integer REFERENCES employee_department (id),
   PRIMARY KEY (employee_id, department_id)
 );
 
+--	Task : Inserta 3 pasatiempos
 --	Create table employee_hobby
 INSERT INTO employee_hobby (id, name, description) VALUES
 (1, 'Theater', 'Theater plays'),
 (2, 'Video games', 'Playing video games'),
 (3, 'Photography', 'Take photos ');
 
+--	Task : asígnale a todos los empleados al menos 2 pasatiempos
 --	Insert data into table employees_hobbies
 INSERT INTO employees_hobbies (employee_id, department_id) VALUES
 (1, 2),
 (1, 3),
+
 (2, 3),
 (2, 1),
+
 (3, 1),
 (3, 2),
+
 (4, 1),
 (4, 3);
