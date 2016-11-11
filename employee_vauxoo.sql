@@ -16,16 +16,6 @@ CREATE TABLE employee_department (
   description varchar(150)
 );
 
---	Create table employee
-CREATE TABLE employee (
-  id integer PRIMARY KEY,
-  first_name varchar(60),
-  last_name varchar(150),
-  --	Task : Haz los cambios necesarios en la base de datos para poder asignarle a los empleados su respectivo departamento.
-  --		Un empleado está asignado a un solo departamento.
-  department_id integer REFERENCES employee_department (id)
-);
-
 --	Task : Inserta 6 departamentos
 --	Insert data into table employee_department
 INSERT INTO employee_department (id, name, description) VALUES
@@ -36,13 +26,25 @@ INSERT INTO employee_department (id, name, description) VALUES
 (5, 'Administration', 'Administration'),
 (6, 'Warehouse', 'Warehouse');
 
+--	Create table employee
+CREATE TABLE employee (
+  id integer PRIMARY KEY,
+  first_name varchar(60),
+  last_name varchar(150),
+  --	Task : Haz los cambios necesarios en la base de datos para poder asignarle a los empleados su respectivo departamento.
+  --		Un empleado está asignado a un solo departamento.
+  department_id integer REFERENCES employee_department (id),
+  --	Task : Haz los cambios necesarios en la base de datos para poder asignar a los empleados un jefe.
+  boss_id integer REFERENCES employee (id)
+);
+
 --	Task : Inserta 4 empleados
 --	Insert data into table  employee
-INSERT INTO employee (id, first_name, last_name, department_id) VALUES
-(1, 'Manríquez', 'Acevedo', 6),
-(2, 'José', 'Ferreira', 2),
-(3, 'Pablo', 'García', 4),
-(4, 'Jesús', 'Forment', 5);
+INSERT INTO employee (id, first_name, last_name, department_id, boss_id) VALUES
+(1, 'Manríquez', 'Acevedo', 6, 5),
+(2, 'José', 'Ferreira', 2, 1),
+(3, 'Pablo', 'García', 4, 1),
+(4, 'Jesús', 'Forment', 5, 1);
 
 --	Create table employee_hobby
 CREATE TABLE employee_hobby (
